@@ -27,7 +27,7 @@ data:
   LOG_LEVEL: debug
 
   DB_CONNECTION: pgsql
-  DB_HOST: replyboost-postgres-service.replyboost.svc.cluster.local
+  DB_HOST: replyboost-postgres-service.default.svc.cluster.local
   DB_PORT: "5432"
   DB_DATABASE: replyboost
 
