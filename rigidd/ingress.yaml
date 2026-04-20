@@ -1,0 +1,18 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: replyboost-api-ingress
+  namespace: replyboost
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`replyboost.rigidd.app`) && PathPrefix(`/`)
+      middlewares:
+        - name: tls-force
+          namespace: default
+      services:
+        - name: replyboost-api-service
+          port: 80
+
+  tls:
+    secretName: replyboost-api-tls

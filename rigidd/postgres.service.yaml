@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: replyboost-postgres-service
+  namespace: replyboost
+  labels:
+    app: replyboost-postgres
+spec:
+  type: ClusterIP
+  selector:
+    app: replyboost-postgres
+  ports:
+    - port: 5432
+      targetPort: 5432

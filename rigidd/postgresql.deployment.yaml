@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: replyboost-postgres
+  labels:
+    app: replyboost-postgres
+  namespace: replyboost
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: replyboost-postgres
+  template:
+    metadata:
+      labels:
+        app: replyboost-postgres
+    spec:
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: replyboost-postgres
+          image: postgres:17
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5432
+              name: postgres
+          envFrom:
+            - secretRef:
+                name: replyboost-postgres-secret
+            - configMapRef:
+                name: replyboost-postgres-config
+          volumeMounts:
+            - name: replyboost-postgres-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: data
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "100m"
+            requests:
+              memory: "256Mi"
+              cpu: "50m"
+      volumes:
+        - name: replyboost-postgres-storage
+          persistentVolumeClaim:
+            claimName: replyboost-postgres-pvc
