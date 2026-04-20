@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Core\HealthController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\ReviewController;
+
+Route::get('/health', HealthController::class);
 
 Route::get('/', [PlaceController::class, 'index'])->name('index');
 Route::post('/analyze', [PlaceController::class, 'store'])->name('places.store');
