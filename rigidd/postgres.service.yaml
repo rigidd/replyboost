@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: replyboost-postgres-service
-  namespace: replyboost
+  namespace: default
   labels:
     app: replyboost-postgres
 spec:

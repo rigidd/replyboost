@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: replyboost-postgres-config
-  namespace: replyboost
+  namespace: default
   labels:
     app: replyboost-postgres
 data:
