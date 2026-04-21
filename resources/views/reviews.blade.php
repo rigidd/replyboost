@@ -12,6 +12,31 @@
             Retour à l'accueil
         </a>
 
+        <!-- Thinner Unlock Banner -->
+        <div id="trigger-top" class="bg-white rounded-3xl p-5 sm:p-6 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8 relative overflow-hidden group">
+            <div class="absolute -top-16 -right-16 w-32 h-32 bg-indigo-50 rounded-full blur-3xl opacity-60"></div>
+            
+            <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
+                <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                    <div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 shadow-inner shrink-0 group-hover:scale-105 transition-transform duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black text-slate-800 tracking-tight">Débloquez tout</h3>
+                        <p class="text-slate-500 font-semibold text-xs sm:text-sm max-w-sm leading-relaxed">
+                            Accédez à l'intégralité des avis et gérez votre réputation comme un pro.
+                        </p>
+                    </div>
+                </div>
+
+                <a href="{{ route('register', $place) }}" class="w-full sm:w-auto px-8 py-3.5 bg-linear-to-r from-indigo-600 to-violet-600 text-white text-sm font-black rounded-xl shadow-lg shadow-indigo-200 hover:shadow-indigo-400 transform hover:-translate-y-1 transition-all active:scale-95 whitespace-nowrap cursor-pointer text-center">
+                    Récupérer plus d'avis
+                </a>
+            </div>
+        </div>
+
         <!-- Place Header Card (Apple/SaaS style) -->
         <div
             class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden mb-10 shrink-0">
@@ -180,7 +205,7 @@
             @endforeach
 
             <!-- Blurred Paywall Card -->
-            <div class="relative mt-12 pb-20">
+            <div id="trigger-bottom" class="relative mt-12 pb-20">
                 <!-- High Fidelity Blurred Mockup -->
                 <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 opacity-50 blur-[6px] pointer-events-none select-none">
                     <div class="flex items-start">
@@ -213,67 +238,60 @@
                 <!-- CTA Overlay -->
                 <div class="absolute inset-0 flex items-center justify-center -top-8 px-4">
                     <div class="bg-white/95 backdrop-blur-xl p-8 sm:p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white text-center max-w-sm w-full transform transition-all hover:scale-[1.02] duration-500">
-                        <div class="w-20 h-20 bg-indigo-100 rounded-[2rem] flex items-center justify-center text-indigo-600 mb-6 mx-auto shadow-inner">
+                        <div class="w-20 h-20 bg-indigo-100 rounded-4xl flex items-center justify-center text-indigo-600 mb-6 mx-auto shadow-inner">
                             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                             </svg>
                         </div>
                         <h3 class="text-2xl font-black text-slate-900 mb-3 tracking-tight">Débloquez tout</h3>
                         <p class="text-slate-500 text-sm mb-8 leading-relaxed px-2">Accédez à l'intégralité des avis de votre établissement et gérez votre réputation comme un pro.</p>
-                        <button onclick="showSubscriptionModal()" class="w-full py-4 px-6 bg-linear-to-r from-indigo-600 to-violet-600 text-white font-black rounded-2xl shadow-xl shadow-indigo-200 hover:from-indigo-500 hover:to-violet-500 transition-all active:scale-95 cursor-pointer">
+                        <a href="{{ route('register', $place) }}" class="block w-full py-4 px-6 bg-linear-to-r from-indigo-600 to-violet-600 text-white font-black rounded-2xl shadow-xl shadow-indigo-200 hover:from-indigo-500 hover:to-violet-500 transition-all active:scale-95 cursor-pointer text-center">
                             Récupérer plus d'avis
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Subscription Modal -->
-    <div id="subscription-modal" class="fixed inset-0 z-5000 hidden">
-        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="hideSubscriptionModal()"></div>
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="relative bg-white rounded-[2.5rem] shadow-2xl max-w-lg w-full overflow-hidden transform transition-all">
-                <!-- Close Button -->
-                <button onclick="hideSubscriptionModal()" class="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors z-20">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-
-                <div class="p-8 sm:p-12 text-center">
-                    <div class="inline-flex items-center justify-center w-20 h-20 bg-indigo-50 rounded-3xl text-indigo-600 mb-6">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                        </svg>
-                    </div>
-                    
-                    <h2 class="text-3xl font-black text-slate-900 mb-4 tracking-tight">Passez à la vitesse supérieure</h2>
-                    <p class="text-slate-500 text-base mb-8 leading-relaxed">
-                        Ne laissez aucun avis sans réponse. Avec <b>ReplyBoost Pro</b>, importez tous vos avis automatiquement et gagnez des heures chaque semaine.
-                    </p>
-
-                    <div class="space-y-4 mb-10 text-left">
-                        <div class="flex items-center gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                            <div class="w-8 h-8 bg-green-100 text-green-600 rounded-lg flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            </div>
-                            <span class="text-slate-700 font-semibold">Avis illimités</span>
-                        </div>
-                        <div class="flex items-center gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                            <div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            </div>
-                            <span class="text-slate-700 font-semibold">IA plus rapide & intelligente</span>
-                        </div>
-                    </div>
-
-                    <button class="w-full py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-black text-lg rounded-2xl shadow-xl shadow-indigo-200 transition-all active:scale-95 mb-4 cursor-pointer">
-                        Essayer Pro - 14 jours gratuits
-                    </button>
-                    <p class="text-slate-400 text-xs">Sans engagement. Annulez à tout moment.</p>
-                </div>
+    <!-- Floating CTA Bubble -->
+    <div id="floating-cta" class="fixed bottom-6 right-6 z-40 transform translate-y-32 opacity-0 transition-all duration-500 ease-out pointer-events-none flex flex-col items-end group">
+        
+        <!-- Speech Bubble Info Card -->
+        <div class="mb-4 w-60 bg-white border border-indigo-50 rounded-2xl p-4 shadow-2xl shadow-indigo-100/50 animate-bounce-slow transform transition-all duration-500">
+            <div class="flex items-center gap-2 mb-1.5">
+                <div class="w-2 h-2 bg-indigo-500 rounded-full animate-ping"></div>
+                <span class="text-[10px] font-black text-indigo-600 uppercase tracking-widest">Affichage limité</span>
             </div>
+            <p class="text-[12px] font-bold text-slate-700 leading-normal">
+                Débloquez l'intégralité de vos avis pour une gestion complète.
+            </p>
+            <!-- Triangle -->
+            <div class="absolute -bottom-1.5 right-8 w-4 h-4 bg-white border-b border-r border-indigo-50 rotate-45"></div>
         </div>
+
+        <a href="{{ route('register', $place) }}" class="bg-white rounded-full p-1.5 shadow-[0_15px_40px_rgba(79,70,229,0.18)] border border-indigo-50 flex items-center gap-3 pr-6 pointer-events-auto cursor-pointer active:scale-95 transition-all hover:shadow-[0_15px_40px_rgba(79,70,229,0.25)] hover:-translate-y-1">
+            <div class="w-10 h-10 bg-linear-to-r from-indigo-600 to-violet-600 rounded-full flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform duration-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+            </div>
+            <span class="text-sm font-black text-slate-800 tracking-tight">Débloquer tout</span>
+        </a>
     </div>
+
+    <!-- Animation CSS for the bounce -->
+    <style>
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 3s ease-in-out infinite;
+        }
+    </style>
+
+
 
     @push('scripts')
         <script>
@@ -376,20 +394,42 @@
                 });
             }
 
-            function showSubscriptionModal() {
-                const modal = document.getElementById('subscription-modal');
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            }
 
-            function hideSubscriptionModal() {
-                const modal = document.getElementById('subscription-modal');
-                modal.classList.add('hidden');
-                document.body.style.overflow = '';
-            }
 
             document.addEventListener('DOMContentLoaded', async () => {
                 generateAll();
+
+                // Floating CTA Visibility Logic
+                const topTrigger = document.getElementById('trigger-top');
+                const bottomTrigger = document.getElementById('trigger-bottom');
+                const floatingCta = document.getElementById('floating-cta');
+
+                if (topTrigger && bottomTrigger && floatingCta) {
+                    let topVisible = true;
+                    let bottomVisible = false;
+
+                    const updateCta = () => {
+                        if (!topVisible && !bottomVisible) {
+                            floatingCta.classList.remove('translate-y-32', 'opacity-0', 'pointer-events-none');
+                        } else {
+                            floatingCta.classList.add('translate-y-32', 'opacity-0', 'pointer-events-none');
+                        }
+                    };
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.target.id === 'trigger-top') {
+                                topVisible = entry.isIntersecting;
+                            } else if (entry.target.id === 'trigger-bottom') {
+                                bottomVisible = entry.isIntersecting;
+                            }
+                        });
+                        updateCta();
+                    }, { threshold: 0 });
+
+                    observer.observe(topTrigger);
+                    observer.observe(bottomTrigger);
+                }
             })
         </script>
     @endpush

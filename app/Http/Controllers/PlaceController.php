@@ -8,6 +8,7 @@ use App\Http\Requests\StorePlaceRequest;
 use App\Models\Place;
 use App\Services\PlaceService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlaceController extends Controller
 {
@@ -41,6 +42,11 @@ class PlaceController extends Controller
 
     public function show(Place $place)
     {
+        // If place is already claimed by a user, redirect guests to login
+        if ($place->user()->exists() && Auth::guest()) {
+            return redirect()->route('login', ['place_id' => $place->id]);
+        }
+
         $place->load('reviews');
         
         $photoUrl = $place->photo_url;

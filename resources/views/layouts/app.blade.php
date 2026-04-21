@@ -30,11 +30,22 @@
         <nav class="bg-white border-b border-slate-200 fixed w-full z-999">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
-                    <div class="flex items-center">
+                    <div class="flex items-center justify-between w-full h-16">
                         <a href="{{ route('index') }}" class="shrink-0 flex items-center">
-                            <span
-                                class="text-2xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">ReplyBoost</span>
+                            <span class="text-2xl font-black bg-linear-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent tracking-tight">ReplyBoost</span>
                         </a>
+
+                        <div class="flex items-center gap-6">
+                            @auth
+                                <a href="{{ route('dashboard') }}" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors">Dashboard</a>
+                                <form action="{{ route('logout') }}" method="POST" class="inline">
+                                    @csrf
+                                    <button type="submit" class="text-[10px] font-black text-slate-400 hover:text-red-500 uppercase tracking-widest transition-colors cursor-pointer">Déconnexion</button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors">Connexion</a>
+                            @endauth
+                        </div>
                     </div>
                 </div>
             </div>
