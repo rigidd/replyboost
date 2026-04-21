@@ -25,7 +25,7 @@ spec:
         - name: regcred
       containers:
         - name: replyboost-api
-          image: ghcr.io/rigidd/replyboost:6
+          image: ghcr.io/rigidd/replyboost:8
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
